@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+.body_home {
+    background-image: url("./home-screen.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card {
+    margin-top: 80px;
+    justify-content: center;
+}
