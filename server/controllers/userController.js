@@ -2,6 +2,7 @@ import User from '../models/userModel.js';
 import asyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 import generateToken from '../utils/generateToken.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 
 // @desc Auth user and get token
@@ -9,7 +10,6 @@ import generateToken from '../utils/generateToken.js';
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
 
     if (!username) {
         res.status(400)
@@ -51,7 +51,6 @@ const authUser = asyncHandler(async (req, res) => {
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
     const { username, password, verifyPassword, name, email, mobile } = req.body;
-    console.log(req.body);
 
     if (!username || !password || !verifyPassword || !name || !email || !mobile) {
         res.status(400)
@@ -96,7 +95,6 @@ const registerUser = asyncHandler(async (req, res) => {
 // @Route Post /user/loggedIn
 // @acces Public
 const loggedIn = asyncHandler((req, res) => {
-    protect;
     res.json(req.user);
 })
 
@@ -104,9 +102,7 @@ const loggedIn = asyncHandler((req, res) => {
 // @Route Post /user/logout
 // @access Public
 const logoutUser = asyncHandler((req, res) => {
-    res.cookie('token', '', {
-        httpOnly: true
-    }).send();
+    res.clearCookie('token').send();
 })
 
 export {

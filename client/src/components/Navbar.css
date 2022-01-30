@@ -23,6 +23,10 @@
     transition: all .45s ease-in;
 }
 
+    :active {
+    color: #fff;
+}
+
 .btn {
     background: #102AB7;
     padding: 11px;

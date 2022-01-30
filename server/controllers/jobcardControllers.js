@@ -60,13 +60,56 @@ const getJobcard = asyncHandler(async (req, res) => {
             },
             {
                 $limit: 10
+            },
+            {
+                $lookup: {
+                    from: "customers",
+                    localField: "customer_id",
+                    foreignField: "_id",
+                    as: "customer"
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "creation_user",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            {
+                $lookup: {
+                    from: "issues",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "issues"
+                }
+            },
+            {
+                $lookup: {
+                    from: "items",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "items"
+                }
+            },
+            {
+                $lookup: {
+                    from: "payments",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "payment"
+                }
             }
         ])
+        console.log(jobcard);
         if (!jobcard.length) {
             res.status(401)
             throw new Error('No jobcard found');
         }
-        res.json(jobcard);
+        const count = await Jobcard.find().count();
+        console.log(count);
+        res.json({jobcard:jobcard,count:count});
     }
 
     // fetching all jobcard filter status
@@ -80,12 +123,54 @@ const getJobcard = asyncHandler(async (req, res) => {
             },
             {
                 $limit: 10
+            },
+            {
+                $lookup: {
+                    from: "customers",
+                    localField: "customer_id",
+                    foreignField: "_id",
+                    as: "customer"
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "creation_user",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            {
+                $lookup: {
+                    from: "issues",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "issues"
+                }
+            },
+            {
+                $lookup: {
+                    from: "items",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "items"
+                }
+            },
+            {
+                $lookup: {
+                    from: "payments",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "payment"
+                }
             }
         ])
         if (!jobcard.length) {
             res.status(401)
             throw new Error('No jobcard found');
         }
+        const count = await jobcard.find({jobcard_status: status}).count();
+        console.log(count);
         res.json(jobcard);
     }
 
@@ -94,6 +179,46 @@ const getJobcard = asyncHandler(async (req, res) => {
         jobcard = await Jobcard.aggregate([
             {
                 $match: { jobcard_id: ObjectId(jobcard_id), isActive: true }
+            },
+            {
+                $lookup: {
+                    from: "customers",
+                    localField: "customer_id",
+                    foreignField: "_id",
+                    as: "customer"
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "creation_user",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            {
+                $lookup: {
+                    from: "issues",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "issues"
+                }
+            },
+            {
+                $lookup: {
+                    from: "items",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "items"
+                }
+            },
+            {
+                $lookup: {
+                    from: "payments",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "payment"
+                }
             }
         ]);
         if (!jobcard.length) {
@@ -114,6 +239,46 @@ const getJobcard = asyncHandler(async (req, res) => {
             },
             {
                 $limit: 10
+            },
+            {
+                $lookup: {
+                    from: "customers",
+                    localField: "customer_id",
+                    foreignField: "_id",
+                    as: "customer"
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "creation_user",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            {
+                $lookup: {
+                    from: "issues",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "issues"
+                }
+            },
+            {
+                $lookup: {
+                    from: "items",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "items"
+                }
+            },
+            {
+                $lookup: {
+                    from: "payments",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "payment"
+                }
             }
         ]);
         if (!jobcard.length) {
@@ -137,6 +302,46 @@ const getJobcard = asyncHandler(async (req, res) => {
             },
             {
                 $limit: 10
+            },
+            {
+                $lookup: {
+                    from: "customers",
+                    localField: "customer_id",
+                    foreignField: "_id",
+                    as: "customer"
+                }
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "creation_user",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            {
+                $lookup: {
+                    from: "issues",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "issues"
+                }
+            },
+            {
+                $lookup: {
+                    from: "items",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "items"
+                }
+            },
+            {
+                $lookup: {
+                    from: "payments",
+                    localField: "_id",
+                    foreignField: "jobcard_id",
+                    as: "payment"
+                }
             }
         ]);
         if (!jobcard.length) {

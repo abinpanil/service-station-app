@@ -1,8 +1,24 @@
 table {
     width: 100%;
     border-spacing: 0;
-    border-radius: 1em;
+    /* border-radius: 1em; */
     overflow: hidden;
+  }
+
+  .table-top {
+    background: #205a8e;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    padding: 10px ;
+  }
+
+  .select label {
+    color: #fff;
+    padding: 5px;
+  }
+
+  .table select {
+    color: black;
   }
   
   thead {
@@ -59,15 +75,27 @@ table {
   td:nth-child(n+2):nth-child(odd) {
     background-color: #ddd;
   }
+
+  .selectOption {
+    max-width: 30px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+    border-top: 1px solid;
+  }
   
   
   @media only screen and (min-width: 768px) {
     
-    table {
+    .table {
         background: #fff;
       max-width: 1200px;
       margin: 0 auto;
       border: 1px solid #ddd;
+      border-radius: 1em;
     }
     
     thead {

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import axios from "axios";
 import AuthContext from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ function SignUp(props) {
     const [verifypassword, setVerifypassword] = useState('');
     const [errorStatus, setErrorStatus] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const { getLoggin } = createContext(AuthContext);
+    const { getLoggin } = useContext(AuthContext);
     const navigate = useNavigate();
 
 

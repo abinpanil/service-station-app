@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext'
 
@@ -11,7 +11,7 @@ function SignIn(props) {
     const [password, setPassword] = useState('');
     const [errorStatus, setErrorStatus] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const { getLoggin } = createContext(AuthContext);
+    const { getLoggin } = useContext(AuthContext);
     const navigate = useNavigate();
 
     async function clickHandler(e) {
@@ -25,10 +25,11 @@ function SignIn(props) {
 
             await axios.post('/user/login', loginData);
             getLoggin();
-            navigate('/');
+            // navigate('/');
 
         } catch (e) {
             setErrorStatus(true)
+            console.log(e.response.data.errorMessage);
             setErrorMessage(e.response.data.errorMessage)
         }
     }
