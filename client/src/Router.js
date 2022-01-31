@@ -12,7 +12,8 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={loggedIn ? <Home page="view_jobcard" /> : <Navigate to='/signin' />} />
+                <Route path='/' element={loggedIn ? <Home page="list_jobcard" /> : <Navigate to='/signin' />} />
+                <Route path='/view-jobcard' element={loggedIn ? <Home page="view_jobcard" /> : <Navigate to='/signin' />} />
                 <Route path='/create-jobcard' element={loggedIn ? <Home page="new_jobcard" /> : <Navigate to='/signin' />} />
                 <Route path='/signin' element={loggedIn ? <Navigate to='/' /> : <Login />} />
             </Routes>

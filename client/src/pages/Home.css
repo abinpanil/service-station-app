@@ -7,7 +7,9 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.card {
+.cardb {
+    display: flex;
     margin-top: 80px;
     justify-content: center;
+    border: none;
 }

@@ -6,6 +6,8 @@ table {
   }
 
   .table-top {
+    display: flex;
+    justify-content: space-between;
     background: #205a8e;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
@@ -84,7 +86,7 @@ table {
     display: flex;
     justify-content: end;
     padding: 20px;
-    border-top: 1px solid;
+    /* border-top: 1px solid; */
   }
   
   

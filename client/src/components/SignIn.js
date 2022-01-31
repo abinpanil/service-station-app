@@ -25,7 +25,7 @@ function SignIn(props) {
 
             await axios.post('/user/login', loginData);
             getLoggin();
-            // navigate('/');
+            navigate('/');
 
         } catch (e) {
             setErrorStatus(true)

@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
+import User from '../models/userModel.js';
 
 const protect = asyncHandler(async (req, res, next) => {
     try {
@@ -10,7 +11,9 @@ const protect = asyncHandler(async (req, res, next) => {
         }
 
         const verified = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = verified.user;
+        const user = await User.findOne({ _id: verified.id });
+        req.user = user;
+        console.log(req.user);
         next();
 
     } catch (e) {

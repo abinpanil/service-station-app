@@ -49,7 +49,7 @@ const getJobcard = asyncHandler(async (req, res) => {
     status = parseInt(status);
     if (!page) page = 1
     page = page * 10 - 10;
-    console.log(req.query, "page:" + page);
+    console.log(jobcard_id, "page:" + page);
     let jobcard
 
     // fetching all jobcard
@@ -107,9 +107,8 @@ const getJobcard = asyncHandler(async (req, res) => {
             res.status(401)
             throw new Error('No jobcard found');
         }
-        const count = await Jobcard.find().count();
-        console.log(count);
-        res.json({jobcard:jobcard,count:count});
+        let count = await Jobcard.find().count();
+        res.json({ jobcard: jobcard, count: count });
     }
 
     // fetching all jobcard filter status
@@ -169,16 +168,15 @@ const getJobcard = asyncHandler(async (req, res) => {
             res.status(401)
             throw new Error('No jobcard found');
         }
-        const count = await jobcard.find({jobcard_status: status}).count();
-        console.log(count);
-        res.json(jobcard);
+        let count = await Jobcard.find({ jobcard_status: status }).count();
+        res.json({ jobcard: jobcard, count: count });
     }
 
     // feching a particular job card
     if (jobcard_id) {
         jobcard = await Jobcard.aggregate([
             {
-                $match: { jobcard_id: ObjectId(jobcard_id), isActive: true }
+                $match: { _id: ObjectId(jobcard_id), isActive: true }
             },
             {
                 $lookup: {
@@ -225,7 +223,8 @@ const getJobcard = asyncHandler(async (req, res) => {
             res.status(401)
             throw new Error('No jobcard found');
         }
-        res.json(jobcard);
+        console.log(jobcard);
+        res.json(jobcard[0]);
     }
 
     // fetching all jobcards of a user
@@ -285,7 +284,8 @@ const getJobcard = asyncHandler(async (req, res) => {
             res.status(401)
             throw new Error('No jobcard for this customer');
         }
-        res.json(jobcard);
+        let count = await Jobcard.find({ customer_id: ObjectId(customer_id), isActive: true }).count();
+        res.json({ jobcard: jobcard, count: count });
     }
 
     // fetching jobcard of user
@@ -348,7 +348,8 @@ const getJobcard = asyncHandler(async (req, res) => {
             res.status(401)
             throw new Error('No jobcard for this customer');
         }
-        res.json(jobcard);
+        let count = await Jobcard.find({ customer_id: ObjectId(customer_id), jobcard_status: status, isActive: true }).count();
+        res.json({ jobcard: jobcard, count: count });
     }
 
 })

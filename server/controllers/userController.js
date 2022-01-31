@@ -95,6 +95,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // @Route Post /user/loggedIn
 // @acces Public
 const loggedIn = asyncHandler((req, res) => {
+    console.log(req.user);
     res.json(req.user);
 })
 

@@ -14,7 +14,7 @@
 }
 
 .Navbar > .nav-items > a {
-    color: #ffff;
+    color: #ffff !important;
     font-size: 16px;
     text-decoration: none;
     margin: 15px;
@@ -28,16 +28,16 @@
 }
 
 .btn {
-    background: #102AB7;
+    background-color: #102AB7 !important;
     padding: 11px;
 }
 
 .btn:hover {
-    background: #ffff;
+    background-color: #ffff !important;
 }
 
 .Navbar > .nav-items > a:hover {
-    color: #102AB7;
+    color: #102AB7 !important;
     opacity: 1;
 }
 
